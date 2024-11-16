@@ -1,7 +1,7 @@
 import requests
 import variableAndContrants as env
 
-base = "http://192.168.1.21:12002"
+base = "http://192.168.1.19:12002"
 url = base + "/api/traffic"
 
 def call():
@@ -15,4 +15,3 @@ def call():
     env.IS_Emer[0] = data['is_emergency']
     env.IS_Night[0] = data['is_night']
     env.INFO_SHOW[0] = data['info_show']
-    # print(data)

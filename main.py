@@ -1,35 +1,36 @@
 import threading
-import wiringpi as pi
+from EmulatorGUI import GPIO
 import variableAndContrants as env
 import led_traffic_controller as traffic
 import led_lcd_controller as lcd
 import database as api
 import time
 
-# Setting for wPi pin mod
-pi.wiringPiSetup()
+# Thiết lập mode cho GPIO
+GPIO.setmode(GPIO.BCM) 
 
-pi.pinMode(env.RED_1, pi.OUTPUT)
-pi.pinMode(env.RED_2, pi.OUTPUT)
-pi.pinMode(env.YELLOW_1, pi.OUTPUT)
-pi.pinMode(env.YELLOW_2, pi.OUTPUT)
-pi.pinMode(env.GREEN_1, pi.OUTPUT)
-pi.pinMode(env.GREEN_2, pi.OUTPUT)
-pi.pinMode(env.Button, pi.INPUT)
+# Thiết lập các chân GPIO
+GPIO.setup(env.RED_1, GPIO.OUT)
+GPIO.setup(env.RED_2, GPIO.OUT)
+GPIO.setup(env.YELLOW_1, GPIO.OUT)
+GPIO.setup(env.YELLOW_2, GPIO.OUT)
+GPIO.setup(env.GREEN_1, GPIO.OUT)
+GPIO.setup(env.GREEN_2, GPIO.OUT)
+GPIO.setup(env.Button, GPIO.IN)
 
-pi.pinMode(env.LED_PIN_A, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_B, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_C, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_D, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_E, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_F, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_G, pi.OUTPUT)
+GPIO.setup(env.LED_PIN_A, GPIO.OUT)
+GPIO.setup(env.LED_PIN_B, GPIO.OUT)
+GPIO.setup(env.LED_PIN_C, GPIO.OUT)
+GPIO.setup(env.LED_PIN_D, GPIO.OUT)
+GPIO.setup(env.LED_PIN_E, GPIO.OUT)
+GPIO.setup(env.LED_PIN_F, GPIO.OUT)
+GPIO.setup(env.LED_PIN_G, GPIO.OUT)
 
-pi.pinMode(env.LED_PIN_DP, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_D1, pi.OUTPUT)
-pi.pinMode(env.LED_PIN_D2, pi.OUTPUT)
+GPIO.setup(env.LED_PIN_DP, GPIO.OUT)
+GPIO.setup(env.LED_PIN_D1, GPIO.OUT)
+GPIO.setup(env.LED_PIN_D2, GPIO.OUT)
 
-# Setup envỉoment
+# Thiết lập môi trường
 api.call()
 
 # Bật chế độ chờ ghi cho LCD
@@ -37,4 +38,3 @@ lcd.lcd_init()
 
 # Bật chế độ đèn giao thông
 traffic.HandleLED()
-
